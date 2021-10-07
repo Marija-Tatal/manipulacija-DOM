@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="style.css" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+
+    <title>Manipulacija DOM elementima</title>
+</head>
+<body>
+    <style>
+    body {
+        box-sizing: border-box;
+        font-family: sans-serif;
+    }
+
+    #login-container {
+        width: 460px;
+        margin: 0 auto;
+    }
+
+    form label,
+    form input {
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    form input {
+        padding: 8px;
+    }
+
+    form label {
+        font-weight: bold;
+    }
+
+    form div {
+        margin: 16px 0px;
+      
+
+    }
+    #verified-ja {
+        display: none;
+    
+    }
+    #lose {
+        display: none;
+       
+    }
+
+</style>
+</head>
+
+<body>
+<div id="login-container">
+
+    <form method="GET">
+        <div  >
+            <label for="username">Username:</label>
+            <input id="username" type="text">
+        </div>
+
+       
+            <div >
+            <span id="verified-ja" class="material-icons iconG" style="color: green;" >check_circle_outline</span>
+            <span id ="lose" class="material-icons iconB" style="color: red;"> highlight_off</span>
+        </div>
+
+
+        <div>
+            <label for="password">Password:</label>
+            <input id="password" type="password">
+        </div>
+
+        <div>
+            <span id="verified-ja" class="material-icons iconG" style="color: green;">check_circle_outline</span>
+            <span id ="lose" class="material-icons iconB" style="color: red;">highlight_off</span>
+
+
+        </div>
+
+
+        <input type="submit" value="Login" onclick="validation()">
+        <p id="message"></p>
+    
+        
+    </form>
+</div>
+    
+
+
+<script src="https://code.jquery.com/jquery-3.6.0.slim.js"
+integrity="sha256-HwWONEZrpuoh951cQD1ov2HUK5zA5DwJ1DNUXaM6FsY="
+crossorigin="anonymous">
+</script>
+
+<script>
+
+function validation(){
+event.preventDefault();
+
+let message = $("#message");
+let username = $("#username");
+let password = $("#password");
+
+
+if(username.val() == "new_user" && password.val() == "123456789"){
+    $("#verified-ja").css("display", "inline"); 
+    username.val("Successful login!");
+    username.css("border-color", "green"); 
+    password.css("border-color", "green"); 
+    
+
+}
+else if (username.val() == "new_user" && password.val() !== "123456789") { 
+    message.text("Please enter valid password"); 
+    password.css("border-color", "red"); 
+    $("#lose").css("display", "inline"); 
+    
+}
+
+else if(username.val() !== "new_user" && password.val() == "123456789") {  
+    username.val("Please enter valid username"); 
+    username.css("border-color", "red"); 
+    password.css("border-color", "green");
+    $("#lose").css("display", "inline"); 
+    
+}
+
+else { 
+
+username.val("Please enter valid username"); 
+password.val("Please enter valid password"); 
+    username.css("border-color", "red"); 
+    password.css("border-color", "red"); 
+    $("#lose").css("display", "inline"); 
+}
+}
+
+ 
+
+
+</script>
+</body>
+</html>
